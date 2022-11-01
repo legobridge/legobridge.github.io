@@ -15,4 +15,4 @@ On my off time, I read, play the guitar, play board games, learn Japanese, and w
 
 ### Contact me
 
-[kushalagrawal17@gmail.com](mailto:kushalagrawal17@gmail.com)
+kushalagrawal17 < at sign > gmail.com
