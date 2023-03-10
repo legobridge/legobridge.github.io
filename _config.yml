@@ -11,6 +11,9 @@ description: r/therewasanattempt to divine meaning where none existed.
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://raw.githubusercontent.com/legobridge/legobridge.github.io/master/images/lego.png
 
+# To make developing easier
+show_drafts: true
+
 # Prose configuration
 prose:
   rooturl: '_posts'

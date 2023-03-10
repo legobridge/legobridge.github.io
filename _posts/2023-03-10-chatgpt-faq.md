@@ -1,5 +1,6 @@
 ---
-layout: blog
+layout: post
+title: "ChatGPT: Commonly Asked Questions"
 published: true
 tags:
   - explainer
@@ -7,11 +8,13 @@ tags:
   - language
 ---
 
-![chatgpt.png]({{site.baseurl}}/images/chatgpt.png)
+![chatgpt.png]({{site.baseurl}}/images/chatgpt.png){: width="15%" .centered}
 
 
 ## ChatGPT
+{:.text-align-center}
 ### Commonly Asked Questions
+{:.text-align-center}
 
 
 We’ve had ChatGPT around for quite some time now, but many of us that work in or adjacent to AI still don’t have the complete picture of how or why it works the way it does. The following is an attempt to briefly answer a few commonly occurring questions about the [fastest growing consumer application to date](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app).
@@ -38,38 +41,34 @@ Note that while the focus of this document is on ChatGPT and the GPT models by O
 
 1.  [Table of Contents](#table-of-contents)
     
-2.  [Questions](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.94noc7d3ndsu)
+2.  [Questions](#questions)
+    
+    1.  [What exactly is the model architecture underlying ChatGPT?](#model-arch)
+        
+    2.  [What changed on the road from GPT-1 > GPT-2 > GPT-3 > InstructGPT > ChatGPT?](#road-to)
+        
+    3.  [What exactly should I expect ChatGPT to know about?](#knowledge)
+        
+    4.  [How can ChatGPT understand / generate novel text that is not present in its training data?](#novel-text)
+        
+    5.  [How does ChatGPT remember what we’ve been talking about, and how much can it remember?](#memory)
+        
+    6.  [Does ChatGPT transfer information across separate chats? If yes, how (browser cookies, server side logging, etc.)?](#separate-chats)
+        
+    7.  [Does ChatGPT explicitly decompose prompts into the task, instructions, context, examples, etc.? If yes, how?](#prompt-decomposition)
+        
+    8.  [Does the order in which the task, instructions, context, etc. are provided in the prompt matter?](#order-of-components)
     
 
-1.  [What exactly is the model architecture underlying ChatGPT?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.mr7nhg89gact)
+3.  [Appendix](#appendix)
     
-2.  [What changed on the road from GPT-1 > GPT-2 > GPT-3 > InstructGPT > ChatGPT?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.db6ipgsfiun4)
-    
-3.  [What exactly should I expect ChatGPT to know about?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.ziao3hrvuics)
-    
-4.  [How can ChatGPT understand / generate novel text that is not present in its training data?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.d3ff8tu996e4)
-    
-5.  [How does ChatGPT remember what we’ve been talking about, and how much can it remember?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.wn8lon9xilcf)
-    
-6.  [Does ChatGPT transfer information across separate chats? If yes, how (browser cookies, server side logging, etc.)?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.blngv55wwjxz)
-    
-7.  [Does ChatGPT explicitly decompose prompts into the task, instructions, context, examples, etc.? If yes, how?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.7x2zdphq8l4y)
-    
-8.  [Does the order in which the task, instructions, context, etc. are provided in the prompt matter?](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.nnjx2z4p5gal)
+4.  [Further Reading](#further-reading)
     
 
-4.  [Appendix](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.a55ag38oz6me)
-    
-
-1.  [My Experiment with ChatGPT Context Windows](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.8qudr8pz0fw6)
-    
-2.  [Few-Shot Learning](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.4g6o55752wqb)
-    
-3.  [Further Reading](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.xdygeo2vda8p)
-    
-
+<a name="questions"></a>
 # Questions
 
+<a name="model-arch"></a>
 ### What exactly is the model architecture underlying ChatGPT?  
   
 
@@ -82,15 +81,11 @@ If you go over to the [ChatGPT homepage](https://openai.com/blog/chatgpt), you�
     
 -   ChatGPT is fine-tuned from a model in the GPT-3.5 series, which finished training in early 2022. 
     
-
-  
-
-Well, which is it?
-
-  
+Well, which is it?  
 
 The answer is, it’s both. If you go [here](https://beta.openai.com/docs/model-index-for-researchers) to read what “GPT-3.5” means, you’ll find out that all text-generating GPT-3.5 models are just InstructGPT models (which themselves are just fine-tuned GPT-3 models), albeit with a fancy tag.
 
+<a name="road-to"></a>
 ### What changed on the road from GPT-1 > GPT-2 > GPT-3 > InstructGPT > ChatGPT?  
   
 
@@ -115,26 +110,22 @@ There have been several key changes and improvements made to the GPT series of l
 3.  Training Data Size: The amount and quality of training data have also increased over time.  
       
     
+    1.  GPT-1 was trained on the BooksCorpus dataset, containing over 7,000 unique unpublished books from a variety of genres. The data size was about 1 GB.
+        
+    2.  GPT-2 was trained on WebText, which the authors created specifically for their research. It is created by scraping all Reddit links with at least 3 karma. This resulted in slightly over 8 million documents for a total of 40 GB of text.
+        
+    3.  GPT-3 was trained primarily on the Common Crawl dataset, but the authors filtered it significantly to improve data quality. The data size after filtering came down to about 570 GB. In addition, the training set included an expanded version of WebText, Books1 and Books2, and the entirety of English-language Wikipedia.  
+          
 
-1.  GPT-1 was trained on the BooksCorpus dataset, containing over 7,000 unique unpublished books from a variety of genres. The data size was about 1 GB.
-    
-2.  GPT-2 was trained on WebText, which the authors created specifically for their research. It is created by scraping all Reddit links with at least 3 karma. This resulted in slightly over 8 million documents for a total of 40 GB of text.
-    
-3.  GPT-3 was trained primarily on the Common Crawl dataset, but the authors filtered it significantly to improve data quality. The data size after filtering came down to about 570 GB. In addition, the training set included an expanded version of WebText, Books1 and Books2, and the entirety of English-language Wikipedia.  
+4.  Training Methodology: Before InstructGPT, the only objective while training GPT models was performing well on next-word prediction. InstructGPT and ChatGPT are fine tuned versions of GPT-3, so they are not trained on large, fresh corpora of text.  
       
-    
+Instead, they use a combination of:
 
-5.  Training Methodology: Before InstructGPT, the only objective while training GPT models was performing well on next-word prediction. InstructGPT and ChatGPT are fine tuned versions of GPT-3, so they are not trained on large, fresh corpora of text.  
-      
-    Instead, they use a combination of  
-      
-    
-
-1.  prompts gathered from real users of GPT-3 Playground
-    
-2.  human labelers
-    
-3.  reinforcement learning (specifically [RLHF](https://huggingface.co/blog/rlhf))
+    1.  prompts gathered from real users of GPT-3 Playground
+        
+    2.  human labelers
+        
+    3.  reinforcement learning (specifically [RLHF](https://huggingface.co/blog/rlhf))
     
 
 to reduce harmful and untruthful content and align the model closer to the task requested by the prompter. The following image from the InstructGPT paper summarizes the process.
@@ -142,10 +133,7 @@ to reduce harmful and untruthful content and align the model closer to the task 
 ![instructgpt_training.png]({{site.baseurl}}/images/instructgpt_training.png)
 
 
-  
-
-###   
-
+<a name="knowledge"></a>
 ### What exactly should I expect ChatGPT to know about?  
   
 
@@ -158,8 +146,8 @@ Note that in their [FAQs](https://help.openai.com/en/articles/6783457-chatgpt-ge
 
 This process ends up leaking some new information into the model, which is probably the reason why we have occasionally been seeing behavior like this - [ChatGPT knows Elon Musk is Twitter’s CEO, despite saying its learning cutoff was in 2021 | Semafor](https://www.semafor.com/article/01/12/2023/chatgpt-knows-elon-musk-is-twitters-ceo-despite-saying-its-learning-cutoff-was-in-2021).
 
-  
 
+<a name="novel-text"></a>
 ### How can ChatGPT understand / generate novel text that is not present in its training data?  
   
 
@@ -185,6 +173,7 @@ During generation, if it needs to generate a word that is not in its vocabulary 
 
 You can play with the tokenizer [here](https://platform.openai.com/tokenizer) to see how GPT models tokenize words.
 
+<a name="memory"></a>
 ### How does ChatGPT remember what we’ve been talking about, and how much can it remember?  
   
 
@@ -219,14 +208,15 @@ I have seen no evidence to suggest B and C are possibilities, and A seems most l
 
 Meta’s [Blender Bot](https://ai.facebook.com/blog/blender-bot-2-an-open-source-chatbot-that-builds-long-term-memory-and-searches-the-internet/) and some other offerings on the market do offer chatbots with effectively infinite context.
 
+<a name="separate-chats"></a>
 ### Does ChatGPT transfer information across separate chats? If yes, how (browser cookies, server side logging, etc.)?
 
   
 According to [OpenAI’s own statements](https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation), ChatGPT does not use context from previous chats.
 
+<a name="prompt-decomposition"></a>
 ### Does ChatGPT explicitly decompose prompts into the task, instructions, context, examples, etc.? If yes, how?
 
-  
 
 Prompts to ChatGPT can contain (among other things) a combination of the following components:  
   
@@ -252,6 +242,7 @@ This is the reason why the GPT-2 paper was titled “Language Models are Unsuper
 
 Also of interest is the fact that the GPT-3 paper was called “Language Models are Few-Shot Learners”. In this paper, the researchers moved their focus from fine-tuning on specific tasks to figuring out how well a sufficiently large language model can perform on novel tasks, with a few examples of the task provided as part of the prompt itself. They realized that GPT-3 was really good at this. Check out [the appendix](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.4g6o55752wqb) for a graphic from the paper explaining the difference.
 
+<a name="order-of-components"></a>
 ### Does the order in which the task, instructions, context, etc. are provided in the prompt matter?
 
   
@@ -273,6 +264,7 @@ The following prompts yield similar responses:
 
 There can, however, always be statistical anomalies in favor of more commonly used sentence and paragraph constructions.
 
+<a name="appendix"></a>
 # Appendix
 
 ### My Experiment with ChatGPT Context Windows
@@ -282,18 +274,21 @@ I asked ChatGPT to remember the word “ampersand”, then fed it a small block 
 ![chatgpt_maxtokens_1.png]({{site.baseurl}}/images/chatgpt_maxtokens_1.png)
 
 _ChatGPT was successful!_
+{:.text-align-center}
 
 Next I fed it a much larger block of text (4098 tokens to be precise, which is larger than its 4096 token context window), and asked it to repeat the word again.
 
 ![chatgpt_maxtokens_2.png]({{site.baseurl}}/images/chatgpt_maxtokens_2.png)
 
 _ChatGPT was… not so successful._
+{:.text-align-center}
 
 ### Few-Shot Learning
 
 ![gpt3_few_shot_learning.png]({{site.baseurl}}/images/gpt3_few_shot_learning.png)
 
 
+<a name="further-reading"></a>
 ### Further Reading
 
 [What Is ChatGPT Doing … and Why Does It Work?—Stephen Wolfram Writings](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/)
