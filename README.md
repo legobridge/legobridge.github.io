@@ -1,1 +1,1 @@
-https://www.legobridge.github.io
+https://legobridge.github.io/
