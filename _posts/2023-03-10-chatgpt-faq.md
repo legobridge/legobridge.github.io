@@ -19,21 +19,15 @@ tags:
 
 We’ve had ChatGPT around for quite some time now, but many of us that work in or adjacent to AI still don’t have the complete picture of how or why it works the way it does. The following is an attempt to briefly answer a few commonly occurring questions about the [fastest growing consumer application to date](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app).
 
-  
+Note that this writeup was originally written for a class of students taking an introductory class in modern AI, and so it assumes that the reader is fairly familiar with ChatGPT, at least from a user's perspective. It also assumes familiarity with NLP terms that have entered common parlance these days, such as prompts, context, transformers, etc.
 
-Note that this writeup assumes that you are fairly familiar with ChatGPT and have personally used it. It also assumes familiarity with NLP terms that have entered common parlance these days, such as prompts, context, transformers, etc.
-
-  
 Though I have separated the content into seemingly independent questions, the answers to some of the questions do depend on understanding the answers to previous questions. Which is to say, feel free to skip to a question you’re interested in, but if something seems confusing, try reading through the first few questions and then try again.  
-  
 
 I have tried to keep the article self contained, but have also sprinkled in several hyperlinks for any readers who feel like diving deeper into certain topics.  
   
-I have made sure to rely on primary sources (i.e. the original papers or statements by OpenAI) when it comes to factual statements. In cases where such a source was not sufficient, I have clearly mentioned the alternative source.
+I've made sure to rely on primary sources (i.e. the original papers or statements by OpenAI) when it comes to factual claims. In cases where such a source was not sufficient, I have clearly mentioned the alternative source.
 
-  
-
-Note that while the focus of this document is on ChatGPT and the GPT models by OpenAI, much of the discussion is applicable to other GPT-like (decoder-based) models as well.
+Note that while the focus of this document is on ChatGPT and the GPT models by OpenAI, much of the discussion is applicable to other GPT-like (decoder-based generative) language models as well.
 
 <a name="table-of-contents"></a>
 
@@ -119,7 +113,7 @@ There have been several key changes and improvements made to the GPT series of l
 
 4.  Training Methodology: Before InstructGPT, the only objective while training GPT models was performing well on next-word prediction. InstructGPT and ChatGPT are fine tuned versions of GPT-3, so they are not trained on large, fresh corpora of text.  
       
-Instead, they use a combination of:
+    Instead, they use a combination of:
 
     1.  prompts gathered from real users of GPT-3 Playground
         
@@ -128,7 +122,7 @@ Instead, they use a combination of:
     3.  reinforcement learning (specifically [RLHF](https://huggingface.co/blog/rlhf))
     
 
-to reduce harmful and untruthful content and align the model closer to the task requested by the prompter. The following image from the InstructGPT paper summarizes the process.
+    to reduce harmful and untruthful content and align the model closer to the task requested by the prompter. The following image from the InstructGPT paper summarizes the process.
 
 ![instructgpt_training.png]({{site.baseurl}}/images/instructgpt_training.png)
 
@@ -137,14 +131,14 @@ to reduce harmful and untruthful content and align the model closer to the task 
 ### What exactly should I expect ChatGPT to know about?  
   
 
-[We know](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.mr7nhg89gact) that GPT-3.5 finished training in early 2022, and so it was trained on pre-2022 data. Therefore ChatGPT has limited knowledge of the world and events after 2021.  
+[We know](#model-arch) that GPT-3.5 finished training in early 2022, and so it was trained on pre-2022 data. Therefore ChatGPT has limited knowledge of the world and events after 2021.  
   
 
 Note that in their [FAQs](https://help.openai.com/en/articles/6783457-chatgpt-general-faq), OpenAI uses the phrase limited knowledge. This is because even though the model itself has (purportedly) not been retrained since early-2022, it is constantly being fine-tuned by the RLHF mentioned previously, in an attempt to patch bugs and remove newly exposed vulnerabilities. 
 
   
 
-This process ends up leaking some new information into the model, which is probably the reason why we have occasionally been seeing behavior like this - [ChatGPT knows Elon Musk is Twitter’s CEO, despite saying its learning cutoff was in 2021 | Semafor](https://www.semafor.com/article/01/12/2023/chatgpt-knows-elon-musk-is-twitters-ceo-despite-saying-its-learning-cutoff-was-in-2021).
+This process ends up leaking some new information into the model, which is probably the reason why we have occasionally been seeing behavior like this - [ChatGPT knows Elon Musk is Twitter’s CEO, despite saying its learning cutoff was in 2021](https://www.semafor.com/article/01/12/2023/chatgpt-knows-elon-musk-is-twitters-ceo-despite-saying-its-learning-cutoff-was-in-2021).
 
 
 <a name="novel-text"></a>
@@ -202,7 +196,7 @@ I have seen no evidence to suggest B and C are possibilities, and A seems most l
 
   
 
-[My experiments](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.8qudr8pz0fw6) seem to indicate that A is correct, and the window size is 4096 tokens after all.
+[My experiments](#experiment) seem to indicate that A is correct, and the window size is 4096 tokens after all.
 
   
 
@@ -228,28 +222,19 @@ Prompts to ChatGPT can contain (among other things) a combination of the followi
 -   context around the task (the full text that needs to be summarized, the question that needs to be answered, etc.)
     
 -   examples of the task being done. These are also known as shots, as in “zero-shot” and “few-shot” learning.
-    
 
-  
 
-According to the literature, GPT-like models do not explicitly decompose the prompt. All the segmentation and representation happens within the weights and biases of the giant neural networks. Since GPT-3 / InstructGPT perform similarly to ChatGPT on prompt completion without any of its bells and whistles, there is no reason to believe that there is an extra segmentation component in ChatGPT.
-
-  
+According to the literature, GPT-like models do not explicitly decompose the prompt. All the segmentation and representation happens within the weights and biases of the giant neural networks. Since GPT-3 / InstructGPT perform similarly to ChatGPT on prompt completion without any of its bells and whistles, there is no reason to believe that there is an extra segmentation component in ChatGPT.  
 
 This is the reason why the GPT-2 paper was titled “Language Models are Unsupervised Multitask Learners” - during training, these models are never given a certain task to perform. They simply figure things out by modeling the training corpus extremely well. 
 
-  
-
-Also of interest is the fact that the GPT-3 paper was called “Language Models are Few-Shot Learners”. In this paper, the researchers moved their focus from fine-tuning on specific tasks to figuring out how well a sufficiently large language model can perform on novel tasks, with a few examples of the task provided as part of the prompt itself. They realized that GPT-3 was really good at this. Check out [the appendix](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.4g6o55752wqb) for a graphic from the paper explaining the difference.
+Also of interest is the fact that the GPT-3 paper was called “Language Models are Few-Shot Learners”. In this paper, the researchers moved their focus from fine-tuning on specific tasks to figuring out how well a sufficiently large language model can perform on novel tasks, with a few examples of the task provided as part of the prompt itself. They realized that GPT-3 was really good at this. Check out [the appendix](#few-shot) for a graphic from the paper explaining the difference.
 
 <a name="order-of-components"></a>
 ### Does the order in which the task, instructions, context, etc. are provided in the prompt matter?
 
-  
 
-Not really, as long as all the pieces of information are present and written coherently. 
-
-  
+Not really, as long as all the pieces of information are present and written coherently.
 
 The following prompts yield similar responses:
 
@@ -258,8 +243,6 @@ The following prompts yield similar responses:
 -   \<essay\> - “Summarize the essay above in less than 150 words”
     
 -   “Give a 150 word summary of the following essay” - \<essay\>
-    
-
   
 
 There can, however, always be statistical anomalies in favor of more commonly used sentence and paragraph constructions.
@@ -267,6 +250,7 @@ There can, however, always be statistical anomalies in favor of more commonly us
 <a name="appendix"></a>
 # Appendix
 
+<a name="experiment"></a>
 ### My Experiment with ChatGPT Context Windows
 
 I asked ChatGPT to remember the word “ampersand”, then fed it a small block of Lorem Ipsum text and asked it to repeat the word.
@@ -283,6 +267,7 @@ Next I fed it a much larger block of text (4098 tokens to be precise, which is l
 _ChatGPT was… not so successful._
 {:.text-align-center}
 
+<a name="few-shot"></a>
 ### Few-Shot Learning
 
 ![gpt3_few_shot_learning.png]({{site.baseurl}}/images/gpt3_few_shot_learning.png)
