@@ -7,7 +7,8 @@ tags:
   - language
 ---
 
-![](https://lh6.googleusercontent.com/cBjsW3IEQnvzsKL49StuDg3vhsmU0x7pd0yVznK5hV2RyE73_WwRPRNwfxPdpo2KcA86VPND_RFvLO9RyiAHOY_-XOFmYSetGOPGc2Xpy0YYzUJ5cfdNPxlosp0Ttrd3TR-jspK7MknTSDLVt40tt-8)
+![chatgpt.png]({{site.baseurl}}/images/chatgpt.png)
+
 
 ## ChatGPT
 ### Commonly Asked Questions
@@ -31,15 +32,11 @@ I have made sure to rely on primary sources (i.e. the original papers or stateme
 
 Note that while the focus of this document is on ChatGPT and the GPT models by OpenAI, much of the discussion is applicable to other GPT-like (decoder-based) models as well.
 
+<a name="table-of-contents"></a>
+
 # Table of Contents
 
-  
-  
-  
-  
-  
-
-1.  [Table of Contents](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.yaee4rwker8x)
+1.  [Table of Contents](#table-of-contents)
     
 2.  [Questions](https://docs.google.com/document/d/19auq9nH1nUFg_N9nAYp4qtCHsjMi57luZB8C_3bVMgk/edit#heading=h.94noc7d3ndsu)
     
@@ -103,7 +100,9 @@ There have been several key changes and improvements made to the GPT series of l
       
     A common misconception (which I also shared prior to reading the InstructGPT paper) is that InstructGPT has only 1.3 billion parameters. In truth, there are versions of InstructGPT from 1.3 billion all the way to 175 billion parameters.  
       
-    I couldn’t find a definitive source for the number of parameters in ChatGPT, so it could be anywhere from 1.3 billion to 175 billion parameters. My bet would be on 175B though, simply because larger models perform better than smaller models (all else being equal), as can be seen in the following image from the InstructGPT paper.![](https://lh3.googleusercontent.com/G-YTzdSvU0EKoeOivkG-HpDPU9lF160dEVc_gcWqBnWWxeWstCDvJNQlOXe5OwVjFZyvSGdF-w42msT01S_HNQeDPBCGcpMcSoAnltSaf-nGA1F1mShaDFYnwacTg5Z-ucHkUwQQBj14vVhz7BmT8PQ)  
+    I couldn’t find a definitive source for the number of parameters in ChatGPT, so it could be anywhere from 1.3 billion to 175 billion parameters. My bet would be on 175B though, simply because larger models perform better than smaller models (all else being equal), as can be seen in the following image from the InstructGPT paper.
+
+![instructgpt_model_sizes.png]({{site.baseurl}}/images/instructgpt_model_sizes.png)
       
     
 2.  Architecture: While all the models in the GPT series are based on the decoder component of the [Transformer](https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html) architecture, there have been some modifications to the architecture over time. For example, GPT-2 introduced a novel positional encoding scheme, and GPT-3 incorporated sparse attention patterns from the [Sparse Transformer](https://arxiv.org/abs/1904.10509) architecture.  
@@ -140,7 +139,8 @@ There have been several key changes and improvements made to the GPT series of l
 
 to reduce harmful and untruthful content and align the model closer to the task requested by the prompter. The following image from the InstructGPT paper summarizes the process.
 
-![](https://lh4.googleusercontent.com/bMrW8PecYC824K9r4h72xayQy0Xf7CUSs-2ql_1P9kfH_j7d7k1BqxxsXWhTZComGrnY9zh5zTF3yPRz4AZmCc3Oc0Jazz7yU1w2HDNySiWlb7Az30Gnx0qgCCyaJiR26-wSgt4iOiJADDqF7U2UX1o)
+![instructgpt_training.png]({{site.baseurl}}/images/instructgpt_training.png)
+
 
   
 
@@ -277,33 +277,23 @@ There can, however, always be statistical anomalies in favor of more commonly us
 
 ### My Experiment with ChatGPT Context Windows
 
-  
-
 I asked ChatGPT to remember the word “ampersand”, then fed it a small block of Lorem Ipsum text and asked it to repeat the word.
 
-  
+![chatgpt_maxtokens_1.png]({{site.baseurl}}/images/chatgpt_maxtokens_1.png)
 
-![](https://lh3.googleusercontent.com/Hc_4rs1K4jUamTi7vTqEof9fKrvgR8DsglfawPnCgb1NqgEtlPkIZ58qG_vpA21ifEoHgizaTFYp7VjIXYARyB-30ufPcEfM6li4YxQwrJk0foNzzMaZJh7D8kODJ9PZvU-x0dx-5Mb3C0ZSORmJOLw)![](https://lh6.googleusercontent.com/aMU473KsIVLxz3Ppvh9PjFORqj3nUFm9t4d6Tfv1UHq1sjT9cmvGn52OgNOqFo1YCXyq1JlsDeM51sm5cK4p17ZYP3wMbFa3DHFnfj8yFSYd_kjonY7OjJpxmAjRqUOVVRWHGOIr3ZfMtnM9eVHSJqA)
-
-ChatGPT was successful!
-
-  
+_ChatGPT was successful!_
 
 Next I fed it a much larger block of text (4098 tokens to be precise, which is larger than its 4096 token context window), and asked it to repeat the word again.
 
-![](https://lh3.googleusercontent.com/FaLlIn_PRa1Bpuwe2ZqAbZV9a9vf-A_Axo_ae5IynvbzGIkV6tUhZNZNWoixzraw-hjNQOVTs35UCsIc2_tN7PMeeB7VKeqKPfsHQ-JWvvLQSWI-J6fQJqwEkwTQ4x46qHNGRqma7oH3HkYM72zNAxc)![](https://lh3.googleusercontent.com/eNsPo_o1kDUhJwCohYUevDTHzyJQR34sMC7YJhhVKfwHXx3k1Kr-6mKgofrHGePcP1-z0pGCRsznPBAW3ovjyU_C-0w06NXuSflfTcJjJiRyD-8oB49IlvQdgooCF8WxitLSc6n4Jb49NqvssNM7mvo)
+![chatgpt_maxtokens_2.png]({{site.baseurl}}/images/chatgpt_maxtokens_2.png)
 
-ChatGPT was… not so successful.
-
-  
-  
+_ChatGPT was… not so successful._
 
 ### Few-Shot Learning
 
-### ![](https://lh5.googleusercontent.com/mj0YuV0GUmu1YZC_Qd3sTxHVmmQ-QS517IfFenESfN4nql0UsyA7UrOSZlfS-pTNnTZsOpiFwof2gHoxejp0SrtcSWtXc-smJlt3JP4oGu5JRm8Tkl161Q3QX-RKAneEpfNSa1sVIyNULqm-iUTwKBc)
+![gpt3_few_shot_learning.png]({{site.baseurl}}/images/gpt3_few_shot_learning.png)
+
 
 ### Further Reading
-
-  
 
 [What Is ChatGPT Doing … and Why Does It Work?—Stephen Wolfram Writings](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/)
