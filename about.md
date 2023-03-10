@@ -11,8 +11,4 @@ My primary interests are the study of intelligence, both human and artificial, a
 
 ### More Information
 
-On my off time, I read, play the guitar, play board games, learn Japanese, and watch animated shows from the 90s that none of my friends want to talk to me about. 
-
-### Contact me
-
-kushalagrawal17 < at sign > gmail.com
+On my off time, I read, play the guitar, play board games, learn Japanese, and watch animated shows from the 90s that none of my friends want to talk to me about.
