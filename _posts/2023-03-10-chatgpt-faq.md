@@ -17,7 +17,7 @@ tags:
 {:.text-align-center}
 
 
-We’ve had ChatGPT around for quite some time now, but many of us that work in or adjacent to AI still don’t have the complete picture of how or why it works the way it does. The following is an attempt to briefly answer a few commonly occurring questions [^1] about the [fastest growing consumer application to date](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app).
+We’ve had ChatGPT around for quite some time now, but many of us that work in or adjacent to AI still don’t have the complete picture of how or why it works the way it does. The following is an attempt to briefly answer a few commonly occurring questions \[[^1]\] about the [fastest growing consumer application to date](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app).
 
 Note that this writeup was originally written for a class of students taking an introductory class in modern AI, and so it assumes that the reader is fairly familiar with ChatGPT, at least from a user's perspective. It also assumes familiarity with NLP terms that have entered common parlance these days, such as prompts, context, transformers, etc.
 
