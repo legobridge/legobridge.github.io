@@ -183,22 +183,15 @@ OpenAI has made no information available about if and how ChatGPT attempts to ta
 
   
 
-1.  Maybe ChatGPT simply uses a sliding window of 4096 tokens, keeping only the latest 4096 tokens in context?
+A.  Maybe ChatGPT simply uses a sliding window of 4096 tokens, keeping only the latest 4096 tokens in context?
     
-2.  Maybe it always retains the start of the conversation, and fills the rest of the context with the most recent N tokens?
+B.  Maybe it always retains the start of the conversation, and fills the rest of the context with the most recent N tokens?
     
-3.  Maybe it uses its own summarization capabilities to summarize previous bits of conversation, to be able to represent the entire conversation context within 4096 tokens?
-    
-
-  
+C.  Maybe it uses its own summarization capabilities to summarize previous bits of conversation, to be able to represent the entire conversation context within 4096 tokens?
 
 I have seen no evidence to suggest B and C are possibilities, and A seems most likely. However, people online seem to have differing experiences, [some suggesting that the context window might be larger.](https://twitter.com/goodside/status/1598874674204618753?t=70_OKsoGYAx8MY38ydXMAA&s=19)
 
-  
-
 [My experiments](#experiment) seem to indicate that A is correct, and the window size is 4096 tokens after all.
-
-  
 
 Meta’s [Blender Bot](https://ai.facebook.com/blog/blender-bot-2-an-open-source-chatbot-that-builds-long-term-memory-and-searches-the-internet/) and some other offerings on the market do offer chatbots with effectively infinite context.
 
