@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ChatGPT: Commonly Asked Questions"
+title: 'ChatGPT: Commonly Asked Questions'
 published: true
 tags:
   - explainer
@@ -49,7 +49,7 @@ Note that while the focus of this document is on ChatGPT and the GPT models by O
         
     6.  [Does ChatGPT transfer information across separate chats? If yes, how (browser cookies, server side logging, etc.)?](#separate-chats)
         
-    7.  [Does ChatGPT explicitly decompose prompts into the task, instructions, context, examples, etc.? If yes, how?](#prompt-decomposition)
+    7.  [Does ChatGPT _explicitly_ decompose prompts into the task, instructions, context, examples, etc.? If yes, how?](#prompt-decomposition)
         
     8.  [Does the order in which the task, instructions, context, etc. are provided in the prompt matter?](#order-of-components)
     
@@ -71,13 +71,13 @@ ChatGPT is a variant of the GPT family of models, the other members of which are
 If you go over to the [ChatGPT homepage](https://openai.com/blog/chatgpt), you’ll learn the following:  
   
 
--   ChatGPT is a sibling model to InstructGPT, and also
+-   ChatGPT is a sibling model to **InstructGPT**, and also
     
--   ChatGPT is fine-tuned from a model in the GPT-3.5 series, which finished training in early 2022. 
+-   ChatGPT is fine-tuned from a model in the **GPT-3.5** series, which finished training in early 2022. 
     
 Well, which is it?  
 
-The answer is, it’s both. If you go [here](https://beta.openai.com/docs/model-index-for-researchers) to read what “GPT-3.5” means, you’ll find out that all text-generating GPT-3.5 models are just InstructGPT models (which themselves are just fine-tuned GPT-3 models), albeit with a fancy tag.
+The answer is, it’s **both**. If you go [here](https://beta.openai.com/docs/model-index-for-researchers) to read what “GPT-3.5” means, you’ll find out that all text-generating GPT-3.5 models are just InstructGPT models (which _themselves_ are just fine-tuned GPT-3 models), albeit with a fancy tag.
 
 <a name="road-to"></a>
 ### What changed on the road from GPT-1 > GPT-2 > GPT-3 > InstructGPT > ChatGPT?  
@@ -85,33 +85,33 @@ The answer is, it’s both. If you go [here](https://beta.openai.com/docs/model-
 
 There have been several key changes and improvements made to the GPT series of language models as they have evolved from GPT-1 to ChatGPT. They can be sorted into the following categories:
 
-1.  Scale: One of the most significant changes has been in the scale of the models. GPT-1 had 117 million parameters, while GPT-2 had 1.5 billion parameters, and GPT-3 increased this number to a whopping 175 billion parameters.  
+1.  **Scale**: One of the most significant changes has been in the scale of the models. GPT-1 had **117 million** parameters, while GPT-2 had **1.5 billion** parameters, and GPT-3 increased this number to a whopping **175 billion** parameters.  
       
-    A common misconception (which I also shared prior to reading the InstructGPT paper) is that InstructGPT has only 1.3 billion parameters. In truth, there are versions of InstructGPT from 1.3 billion all the way to 175 billion parameters.  
+    A **common misconception** (which I also shared prior to reading the InstructGPT paper) is that InstructGPT has only 1.3 billion parameters. In truth, there are versions of InstructGPT from 1.3 billion all the way to 175 billion parameters.  
       
     I couldn’t find a definitive source for the number of parameters in ChatGPT, so it could be anywhere from 1.3 billion to 175 billion parameters. My bet would be on 175B though, simply because larger models perform better than smaller models (all else being equal), as can be seen in the following image from the InstructGPT paper.
 
 ![instructgpt_model_sizes.png]({{site.baseurl}}/images/instructgpt_model_sizes.png)
       
     
-2.  Architecture: While all the models in the GPT series are based on the decoder component of the [Transformer](https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html) architecture, there have been some modifications to the architecture over time. For example, GPT-2 introduced a novel positional encoding scheme, and GPT-3 incorporated sparse attention patterns from the [Sparse Transformer](https://arxiv.org/abs/1904.10509) architecture.  
+2.  **Architecture**: While all the models in the GPT series are based on the decoder component of the [Transformer](https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html) architecture, there have been some modifications to the architecture over time. For example, GPT-2 introduced a novel positional encoding scheme, and GPT-3 incorporated sparse attention patterns from the [Sparse Transformer](https://arxiv.org/abs/1904.10509) architecture.  
       
-    The maximum input sequence length (counted in tokens, which can be thought of as word fragments) supported by the models also increased from 512 in GPT-1, to 1024 in GPT-2, to 2048 in GPT-3, and [4096 in ChatGPT](https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation).  
+    The maximum **input sequence length** (counted in _tokens_, which can be thought of as word fragments) supported by the models also increased from **512** in GPT-1, to **1024** in GPT-2, to **2048** in GPT-3, and [**4096** in ChatGPT](https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation).  
       
     On average, one token is ¾ of an English word, which means the most words you could prompt these models with has increased from about 384 to over 3000.  
       
     
-3.  Training Data Size: The amount and quality of training data have also increased over time.  
+3.  **Training Data Size**: The amount and quality of training data have also increased over time.  
       
     
-    1.  GPT-1 was trained on the BooksCorpus dataset, containing over 7,000 unique unpublished books from a variety of genres. The data size was about 1 GB.
+    1.  GPT-1 was trained on the **BooksCorpus** dataset, containing over 7,000 unique unpublished books from a variety of genres. The data size was about **1 GB**.
         
-    2.  GPT-2 was trained on WebText, which the authors created specifically for their research. It is created by scraping all Reddit links with at least 3 karma. This resulted in slightly over 8 million documents for a total of 40 GB of text.
+    2.  GPT-2 was trained on **WebText**, which the authors created specifically for their research. It is created by scraping all Reddit links with at least 3 karma. This resulted in slightly over 8 million documents for a total of **40 GB** of text.
         
-    3.  GPT-3 was trained primarily on the Common Crawl dataset, but the authors filtered it significantly to improve data quality. The data size after filtering came down to about 570 GB. In addition, the training set included an expanded version of WebText, Books1 and Books2, and the entirety of English-language Wikipedia.  
+    3.  GPT-3 was trained primarily on the **Common Crawl** dataset, but the authors filtered it significantly to improve data quality. The data size after filtering came down to about **570 GB**. In addition, the training set included an expanded version of **WebText**, **Books1** and **Books2**, and the entirety of English-language **Wikipedia**.  
           
 
-4.  Training Methodology: Before InstructGPT, the only objective while training GPT models was performing well on next-word prediction. InstructGPT and ChatGPT are fine tuned versions of GPT-3, so they are not trained on large, fresh corpora of text.  
+4. **Training Methodology**: Before InstructGPT, the only objective while training GPT models was performing well on next-word prediction. InstructGPT and ChatGPT are fine tuned versions of GPT-3, so they are not trained on large, fresh corpora of text.  
       
     Instead, they use a combination of:
 
@@ -131,10 +131,10 @@ There have been several key changes and improvements made to the GPT series of l
 ### What exactly should I expect ChatGPT to know about?  
   
 
-[We know](#model-arch) that GPT-3.5 finished training in early 2022, and so it was trained on pre-2022 data. Therefore ChatGPT has limited knowledge of the world and events after 2021.  
+[We know](#model-arch) that GPT-3.5 finished training in early 2022, and so it was trained on pre-2022 data. Therefore **ChatGPT has limited knowledge of the world and events after 2021**.  
   
 
-Note that in their [FAQs](https://help.openai.com/en/articles/6783457-chatgpt-general-faq), OpenAI uses the phrase limited knowledge. This is because even though the model itself has (purportedly) not been retrained since early-2022, it is constantly being fine-tuned by the RLHF mentioned previously, in an attempt to patch bugs and remove newly exposed vulnerabilities. 
+Note that in their [FAQs](https://help.openai.com/en/articles/6783457-chatgpt-general-faq), OpenAI uses the phrase _limited knowledge_. This is because even though the model itself has (purportedly) not been retrained since early-2022, it is constantly being _fine-tuned_ by the RLHF mentioned previously, in an attempt to patch bugs and remove newly exposed vulnerabilities. 
 
   
 
@@ -149,7 +149,7 @@ This super-ability is a result of the ingenious way in which the GPT models toke
 
   
 
-Oversimplifying quite a bit, we can imagine that ChatGPT isn’t just limited to predicting the next word in a sequence - it can predict the next character too. And it can more or less freely choose to do either of those.
+Oversimplifying quite a bit, we can imagine that ChatGPT isn’t just limited to predicting the next _word_ in a sequence - it can predict the next _character_ too. And it can more or less freely choose to do either of those.
 
   
 
@@ -157,13 +157,11 @@ So if you prompt ChatGPT with a word it knows (i.e. a word in its vocabulary) su
 
   
 
-When prompted with longer and/or less frequently used words (or even non-words), such as “indirectly”, it will split the word into tokens (in-direct-ly) that are in its vocabulary. Note the semantic significance of the split in this case.
+When prompted with longer and/or less frequently used words (or even non-words), such as “indirectly”, it will split the word into tokens (in-direct-ly) that _are_ in its vocabulary. Note the semantic significance of the split in this case.
 
   
 
 During generation, if it needs to generate a word that is not in its vocabulary (imagine the prompt “Repeat the word xyzzy back to me”), in the worst case it can do so by joining single-character tokens (x-y-z-z-y) together, one at a time.
-
-  
 
 You can play with the tokenizer [here](https://platform.openai.com/tokenizer) to see how GPT models tokenize words.
 
@@ -175,7 +173,7 @@ Disclaimer: ChatGPT is both a model and a web application powered by that model.
 
   
 
-ChatGPT doesn’t actually “remember” anything. Since at its core, it is just a Transformer model with a [max input sequence length of 4096 tokens](https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation), each time the model generates some text, it is only going off of what it received as its 4k token input. Every time you enter a prompt into ChatGPT, it feeds in as much of the current conversation as it can back into the model, and generates fresh response text.
+ChatGPT **doesn’t actually “remember” anything**. Since at its core, it is just a Transformer model with a [max input sequence length of 4096 tokens](https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation), each time the model generates some text, it is only going off of what it received as its 4k token input. Every time you enter a prompt into ChatGPT, it feeds in as much of the current conversation as it can back into the model, and generates fresh response text.
 
   
 
@@ -206,35 +204,35 @@ Meta’s [Blender Bot](https://ai.facebook.com/blog/blender-bot-2-an-open-source
 ### Does ChatGPT transfer information across separate chats? If yes, how (browser cookies, server side logging, etc.)?
 
   
-According to [OpenAI’s own statements](https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation), ChatGPT does not use context from previous chats.
+According to [OpenAI’s own statements](https://help.openai.com/en/articles/6787051-does-chatgpt-remember-what-happened-earlier-in-the-conversation), **ChatGPT does not use context from previous chats.**
 
 <a name="prompt-decomposition"></a>
-### Does ChatGPT explicitly decompose prompts into the task, instructions, context, examples, etc.? If yes, how?
+### Does ChatGPT _explicitly_ decompose prompts into the task, instructions, context, examples, etc.? If yes, how?
 
 
 Prompts to ChatGPT can contain (among other things) a combination of the following components:  
   
 
--   the task to be performed (summarization, composition, question-answering, etc.)
+-   **the task** to be performed (summarization, composition, question-answering, etc.)
     
--   instructions specifying how to do the task (no more than 600 words, use the style of Shakespeare, etc.)
+-   **instructions** specifying how to do the task (no more than 600 words, use the style of Shakespeare, etc.)
     
--   context around the task (the full text that needs to be summarized, the question that needs to be answered, etc.)
+-   **context** around the task (the full text that needs to be summarized, the question that needs to be answered, etc.)
     
--   examples of the task being done. These are also known as shots, as in “zero-shot” and “few-shot” learning.
+-   **examples** of the task being done. These are also known as **shots**, commonly seen in the phrases “zero-shot”, “one-shot”, and “few-shot” learning.
 
 
-According to the literature, GPT-like models do not explicitly decompose the prompt. All the segmentation and representation happens within the weights and biases of the giant neural networks. Since GPT-3 / InstructGPT perform similarly to ChatGPT on prompt completion without any of its bells and whistles, there is no reason to believe that there is an extra segmentation component in ChatGPT.  
+According to the literature, GPT-like models **do not explicitly decompose the prompt**. All the segmentation and representation happens within the weights and biases of the giant neural networks. Since GPT-3 / InstructGPT perform similarly to ChatGPT on prompt completion without any of its bells and whistles, there is no reason to believe that there is an extra segmentation component in ChatGPT.  
 
-This is the reason why the GPT-2 paper was titled “Language Models are Unsupervised Multitask Learners” - during training, these models are never given a certain task to perform. They simply figure things out by modeling the training corpus extremely well. 
+This is the reason why the GPT-2 paper was titled “_Language Models are **Unsupervised Multitask Learners**_” - during training, these models are never given a certain task to perform. They simply figure things out by modeling the training corpus extremely well. 
 
-Also of interest is the fact that the GPT-3 paper was called “Language Models are Few-Shot Learners”. In this paper, the researchers moved their focus from fine-tuning on specific tasks to figuring out how well a sufficiently large language model can perform on novel tasks, with a few examples of the task provided as part of the prompt itself. They realized that GPT-3 was really good at this. Check out [the appendix](#few-shot) for a graphic from the paper explaining the difference.
+Also of interest is the fact that the GPT-3 paper was called “_Language Models are **Few-Shot Learners**_”. In this paper, the researchers moved their focus from fine-tuning on specific tasks to figuring out how well a sufficiently large language model can perform on novel tasks, with a few examples of the task provided as part of the prompt itself. They realized that GPT-3 was really good at this. Check out [the appendix](#few-shot) for a graphic from the paper explaining the difference.
 
 <a name="order-of-components"></a>
 ### Does the order in which the task, instructions, context, etc. are provided in the prompt matter?
 
 
-Not really, as long as all the pieces of information are present and written coherently.
+**Not really**, though it is hard to provide solid proof of this. It does appear that the order does not matter, as long as all the pieces of information are present and written coherently.
 
 The following prompts yield similar responses:
 
