@@ -17,7 +17,7 @@ tags:
 {:.text-align-center}
 
 
-We’ve had ChatGPT around for quite some time now, but many of us that work in or adjacent to AI still don’t have the complete picture of how or why it works the way it does. The following is an attempt to briefly answer a few commonly occurring questions about the [fastest growing consumer application to date](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app).
+We’ve had ChatGPT around for quite some time now, but many of us that work in or adjacent to AI still don’t have the complete picture of how or why it works the way it does. The following is an attempt to briefly answer a few commonly occurring questions [^1] about the [fastest growing consumer application to date](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app).
 
 Note that this writeup was originally written for a class of students taking an introductory class in modern AI, and so it assumes that the reader is fairly familiar with ChatGPT, at least from a user's perspective. It also assumes familiarity with NLP terms that have entered common parlance these days, such as prompts, context, transformers, etc.
 
@@ -58,6 +58,8 @@ Note that while the focus of this document is on ChatGPT and the GPT models by O
     
 4.  [Further Reading](#further-reading)
     
+4.  [Footnotes](#footnotes)
+    
 
 <a name="questions"></a>
 # Questions
@@ -66,14 +68,14 @@ Note that while the focus of this document is on ChatGPT and the GPT models by O
 ### What exactly is the model architecture underlying ChatGPT?  
   
 
-ChatGPT is a variant of the GPT family of models, the other members of which are [GPT-1](https://openai.com/research/language-unsupervised), [GPT-2](https://openai.com/research/better-language-models), [GPT-3](https://arxiv.org/abs/2005.14165), and [InstructGPT](https://openai.com/research/instruction-following).  
+ChatGPT is a variant of the GPT family of models, the other members of which are [GPT-1](https://openai.com/research/language-unsupervised) , [GPT-2](https://openai.com/research/better-language-models), [GPT-3](https://arxiv.org/abs/2005.14165), and [InstructGPT](https://openai.com/research/instruction-following). \[[^2]\]
   
 If you go over to the [ChatGPT homepage](https://openai.com/blog/chatgpt), you’ll learn the following:  
   
 
 -   ChatGPT is a sibling model to **InstructGPT**, and also
     
--   ChatGPT is fine-tuned from a model in the **GPT-3.5** series, which finished training in early 2022. 
+-   ChatGPT is fine-tuned from a model in the **GPT-3.5** series, which finished training in early 2022.
     
 Well, which is it?  
 
@@ -134,7 +136,7 @@ There have been several key changes and improvements made to the GPT series of l
 [We know](#model-arch) that GPT-3.5 finished training in early 2022, and so it was trained on pre-2022 data. Therefore **ChatGPT has limited knowledge of the world and events after 2021**.  
   
 
-Note that in their [FAQs](https://help.openai.com/en/articles/6783457-chatgpt-general-faq), OpenAI uses the phrase _limited knowledge_. This is because even though the model itself has (purportedly) not been retrained since early-2022, it is constantly being _fine-tuned_ by the RLHF mentioned previously, in an attempt to patch bugs and remove newly exposed vulnerabilities. 
+Note that in their [FAQs](https://help.openai.com/en/articles/6783457-chatgpt-general-faq), OpenAI uses the phrase _limited knowledge_. This is because even though the model itself has (purportedly) not been retrained since early-2022, it is constantly being _fine-tuned_ by the RLHF mentioned previously, in an attempt to patch bugs and remove newly exposed vulnerabilities.
 
   
 
@@ -153,7 +155,7 @@ Oversimplifying quite a bit, we can imagine that ChatGPT isn’t just limited to
 
   
 
-So if you prompt ChatGPT with a word it knows (i.e. a word in its vocabulary) such as “president”, it will represent it as a single token. 
+So if you prompt ChatGPT with a word it knows (i.e. a word in its vocabulary) such as “president”, it will represent it as a single token.
 
   
 
@@ -161,7 +163,7 @@ When prompted with longer and/or less frequently used words (or even non-words),
 
   
 
-During generation, if it needs to generate a word that is not in its vocabulary (imagine the prompt “Repeat the word xyzzy back to me”), in the worst case it can do so by joining single-character tokens (x-y-z-z-y) together, one at a time.
+During generation, if it needs to generate a word that is not in its vocabulary (imagine the prompt “Repeat the word xyzzy back to me”), in the worst case it can do so by joining single-character tokens (x-y-z-z-y) together, one at a time. \[[^3]\]
 
 You can play with the tokenizer [here](https://platform.openai.com/tokenizer) to see how GPT models tokenize words.
 
@@ -190,7 +192,7 @@ OpenAI has made no information available about if and how ChatGPT attempts to ta
 
   
 
-I have seen no evidence to suggest B and C are possibilities, and A seems most likely. However, people online seem to have differing experiences, [some suggesting that the context window might be larger.](https://twitter.com/goodside/status/1598874674204618753?t=70_OKsoGYAx8MY38ydXMAA&s=19) 
+I have seen no evidence to suggest B and C are possibilities, and A seems most likely. However, people online seem to have differing experiences, [some suggesting that the context window might be larger.](https://twitter.com/goodside/status/1598874674204618753?t=70_OKsoGYAx8MY38ydXMAA&s=19)
 
   
 
@@ -224,7 +226,7 @@ Prompts to ChatGPT can contain (among other things) a combination of the followi
 
 According to the literature, GPT-like models **do not explicitly decompose the prompt**. All the segmentation and representation happens within the weights and biases of the giant neural networks. Since GPT-3 / InstructGPT perform similarly to ChatGPT on prompt completion without any of its bells and whistles, there is no reason to believe that there is an extra segmentation component in ChatGPT.  
 
-This is the reason why the GPT-2 paper was titled “_Language Models are **Unsupervised Multitask Learners**_” - during training, these models are never given a certain task to perform. They simply figure things out by modeling the training corpus extremely well. 
+This is the reason why the GPT-2 paper was titled “_Language Models are **Unsupervised Multitask Learners**_” - during training, these models are never given a certain task to perform. They simply figure things out by modeling the training corpus extremely well.
 
 Also of interest is the fact that the GPT-3 paper was called “_Language Models are **Few-Shot Learners**_”. In this paper, the researchers moved their focus from fine-tuning on specific tasks to figuring out how well a sufficiently large language model can perform on novel tasks, with a few examples of the task provided as part of the prompt itself. They realized that GPT-3 was really good at this. Check out [the appendix](#few-shot) for a graphic from the paper explaining the difference.
 
@@ -275,3 +277,10 @@ _ChatGPT was… not so successful._
 ### Further Reading
 
 [What Is ChatGPT Doing … and Why Does It Work?—Stephen Wolfram Writings](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/)
+
+
+<a name="footnotes"></a>
+### Footnotes
+[^1]: Fun fact: If you ask ChatGPT these questions, it will hallucinate up alarmingly inaccurate answers.
+[^2]: Just like WW1 was called The Great War before WW2 came along, GPT-1 used to be GPT.
+[^3]: Interestingly, xyzzy is actually tokenized as xy-zzy. This is probably because -xy and -zzy are common word suffixes (proxy, fizzy).
