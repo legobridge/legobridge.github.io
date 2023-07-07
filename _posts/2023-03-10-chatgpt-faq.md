@@ -16,6 +16,7 @@ tags:
 ### Commonly Asked Questions
 {:.text-align-center}
 
+_Everything below was written in early March, 2023, and many of the details and numbers might be out of date by now._
 
 We’ve had ChatGPT around for quite some time now, but many of us that work in or adjacent to AI still don’t have the complete picture of how or why it works the way it does. The following is an attempt to briefly answer a few commonly occurring questions \[[^1]\] about the [fastest growing consumer application to date](https://www.theguardian.com/technology/2023/feb/02/chatgpt-100-million-users-open-ai-fastest-growing-app).
 
