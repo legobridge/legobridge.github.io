@@ -7,7 +7,7 @@ published: true
 
 I'm a graduate student at Northwestern University, pursuing an MS in Artificial Intelligence. 
 
-At the moment, I'm interning as an Applied Scientist at [Relativity](https://www.relativity.com/), where I'm conducting research on retrieval-augmented generation, using GPT-4 and vector databases. I'm also developing a prototype search tool based on said research, and conducting experiments using it.
+Over the summer of 2023, I interned as an Applied Scientist at [Relativity](https://www.relativity.com/), where I conducted research on retrieval-augmented generation, using GPT-4 and vector databases. I also developed a prototype search tool based on said research, and compared it to lexical search algorithms.
 
 I've previously worked as a data scientist and as a software development engineer at [Flipkart](https://en.wikipedia.org/wiki/Flipkart). My areas of focus there were NLP, information retrieval (search), logistics planning problems, and high-throughput Java microservices. 
 
