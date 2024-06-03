@@ -30,4 +30,4 @@ Fast-forward to July 5th, 2023, and OpenAI has [<u>made</u>](https://openai.com/
 
 How well they fare, time will tell. But this is the first time in a while that I've felt hopeful about our chances in this uphill battle.
 
-_Obligatory May 2024 Edit:_ Nevermind, putting all my eggs in the [CAIS](https://www.safe.ai/work) and [Anthropic](https://www.anthropic.com/news/mapping-mind-language-model "Mapping the Mind of a Large Language Model") baskets for now.
+**_Obligatory May 2024 Edit:_** Nevermind, putting all my eggs in the [CAIS](https://www.safe.ai/work) and [Anthropic](https://www.anthropic.com/news/mapping-mind-language-model "Mapping the Mind of a Large Language Model") baskets for now.
