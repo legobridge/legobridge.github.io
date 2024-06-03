@@ -3,11 +3,11 @@ layout: post
 title: 'AI Alignment: Then and Now'
 published: true
 tags:
-  - opinion
   - explainer
-  - openai
   - ai
   - alignment
+  - opinion
+  - openai
   - presentation
   - talk
 ---
@@ -28,5 +28,6 @@ I gave my presentation less than 5 months ago, and the climate surrounding align
 
 Fast-forward to July 5th, 2023, and OpenAI has [<u>made</u>](https://openai.com/blog/planning-for-agi-and-beyond) [<u>four</u>](https://openai.com/blog/our-approach-to-ai-safety) [<u>separate</u>](https://openai.com/blog/governance-of-superintelligence) [<u>announcements</u>](https://openai.com/blog/introducing-superalignment) regarding AI Safety and Alignment, with the first coming out just 2 days after my talk. In the latest one, they've put their money where their mouths are, announcing a new "Superalignment" team, with the goal to "solve the core technical challenges of superintelligence alignment in four years."
 
-How well they fare, time will tell. But this is the first time in a while that I've felt hopeful about our chances in this uphill battle. 
+How well they fare, time will tell. But this is the first time in a while that I've felt hopeful about our chances in this uphill battle.
 
+_Obligatory May 2024 Edit:_ Nevermind, putting all my eggs in the [CAIS](https://www.safe.ai/work) and [Anthropic](https://www.anthropic.com/news/mapping-mind-language-model "Mapping the Mind of a Large Language Model") baskets for now.
