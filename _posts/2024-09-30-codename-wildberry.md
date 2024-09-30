@@ -4,8 +4,6 @@ tags:
   - ai
   - alignment
 ---
-## Codename: Wildberry
-
 I'm currently working on a browser game titled _Codename: Wildberry_. It's a choices-matter narrative adventure, similar mechanically to games like Reigns and Suzerain.
 
 The game is inspired from Universal Paperclips and covers scenarios and conceps discussed in the following AI Safety course: https://www.aisafetybook.com/virtual-course
