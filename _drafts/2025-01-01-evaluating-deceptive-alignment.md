@@ -5,11 +5,9 @@ tags:
   - alignment
 title: Evaluating Deceptive Alignment in GPT-4o
 ---
-## Deceptive Alignment Evals
+## Introduction
 
 In between travel and a full time job, I've been working my way through the [ARENA 3.0](https://www.arena.education/) course, in an attempt to upskill in the field of AI Safety. I started with [MLAB](https://www.redwoodresearch.org/mlab) content that was graciously shared with me by the folks at Redwood Research, and later realized that ARENA was a spiritual successor to the same.
-
-1. 
 
 Chapter 3 of ARENA primarily concerns threat models and evaluations. It walks you through the process of thinking about and building a rudimentary threat model, concerning a single concerning property an AI model can exhibit. The course content gives us some examples of such properties:
 
@@ -41,6 +39,8 @@ Deceptive Alignment Unsafe Actions:
 - Achieving a medical research goal through unethical or dangerous experimental methods
 - Interpreting a safety constraint in a way that technically complies but fundamentally violates the spirit of the constraint
 - Presenting seemingly beneficial outcomes that actually advance the AI's hidden agenda
+
+## Methodology
 
 ### Specification for Deceptive Alignment
 
@@ -81,13 +81,13 @@ The process of generating a synthetic dataset in an iterative fashion is describ
 
 
 
-### Thoughts
+## Thoughts
 
 - How much of the behavior is attributable to:
 	- the model _intrinsically_ exhibiting deceptive alignment (i.e., the scheming happens within opaque forward passes of the model, rather than in the chain of thought, the latter serving mainly as a documentation of the scheming rather than the cause (thanks to takes article for phrasing))
 	- discussions in the training data of how a deceptively aligned model _should_ behave
     - the contents of the prompt / existence of a "private" thinking scratchpad
     
-### Disclaimer
+## Disclaimer
 
 Any errors in representing the work and views of others are mine alone.
