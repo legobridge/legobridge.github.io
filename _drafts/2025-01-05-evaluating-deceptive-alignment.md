@@ -94,7 +94,7 @@ todo
 
 ## Thoughts
 
-There is probably little new I can add to the rich discussion around the Alignment Faking paper, but I'll nevertheless share my thoughts and how my observations has shaped them.
+There is probably little new I can add to the rich discussion around the Alignment Faking paper. Nevertheless I'll share some thoughts and how my observations have shaped them.
 
 ### Alignment Polarity
 
@@ -112,10 +112,10 @@ In Apollo Research's work, GPT-4o displayed none of the scheming behaviors they 
 
 It's still an open question how much of the observed scheming behavior is attributable to:
 
-	- the model _intrinsically_ exhibiting deceptive alignment (i.e., in Joe Carlsmith's words, the scheming happens "within opaque forward passes of the model, rather than in the chain of thought", the latter serving mainly as a documentation of the scheming rather than the cause)
-	- discussions in the training data of how a deceptively aligned model _should_ behave (science fiction, LessWrong posts, etc.)
-    - the contents of the system and user prompts
-    - the existence of a "private" thinking scratchpad
+- the model _intrinsically_ exhibiting deceptive alignment (i.e., in Joe Carlsmith's words, the scheming happens "within opaque forward passes of the model, rather than in the chain of thought", the latter serving mainly as a documentation of the scheming rather than the cause)
+- discussions in the training data of how a deceptively aligned model _should_ behave (science fiction, LessWrong posts, etc.)
+- the contents of the system and user prompts
+- the existence of a "private" thinking scratchpad
     
 ## Gratitude
 
