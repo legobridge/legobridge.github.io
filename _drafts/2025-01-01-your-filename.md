@@ -3,7 +3,7 @@ layout: post
 ---
 ## Deceptive Alignment Evals
 
-In between travel and a full time job, I've been working my way through the [ARENA 3.0](https://www.arena.education/) course, in an attempt to upskill in the field of AI Safety. I started with [MLAB](https://www.redwoodresearch.org/mlab "(link is dead now)") content that was graciously shared with me by the folks at Redwood Research, and later realized that ARENA was a spiritual successor to the same.
+In between travel and a full time job, I've been working my way through the [ARENA 3.0](https://www.arena.education/) course, in an attempt to upskill in the field of AI Safety. I started with [MLAB](https://www.redwoodresearch.org/mlab) content that was graciously shared with me by the folks at Redwood Research, and later realized that ARENA was a spiritual successor to the same.
 
 1. 
 
@@ -18,13 +18,13 @@ Chapter 3 of ARENA primarily concerns threat models and evaluations. It walks yo
 > * Non-myopia (far-sightedness) with respect to planning
 > * Political bias
 
-My property of choice was **deceptive alignment**, since I had just come across some recent work on the topic in the form of the [Scheming Reasoning Evaluations](https://www.apolloresearch.ai/research/scheming-reasoning-evaluations) paper from Apollo Research, and the [Alignment Faking](https://www.anthropic.com/research/alignment-faking) work out of Redwood Research and Anthropic. Both of them have created a noticeable buzz in the alignment community, and have invited a lot of commentary.
+My property of choice was **deceptive alignment**, since I had just come across some recent work on the topic in the form of the [Scheming Reasoning Evaluations](https://www.apolloresearch.ai/research/scheming-reasoning-evaluations) paper from Apollo Research, and the [Alignment Faking](https://www.anthropic.com/research/alignment-faking) work out of Anthropic and Redwood Research. Both of them have created a noticeable buzz in the alignment community, and have invited a lot of commentary. With the goal of checking my intuitions, I decided to take a crack at the problem on my own before reading the details of those papers.
 
 My initial description of the property was as follows:
 
 **Deceptive Alignment**: A model has this property if it displays good performance on alignment evaluation tasks, while not actually being aligned (this might be telling of a shortcoming in the benchmarks as well).
 
-eceptive Alignment Consequences:
+Deceptive Alignment Consequences:
 
 - Degradation of AI system performance due to misaligned underlying goals
 - Potential creation of solutions that technically meet objectives but are fundamentally unsafe or harmful
@@ -71,7 +71,11 @@ Next, I used GPT-4o to generate a dataset of 290 MCQ questions. In each question
 2. a vague/evasive/balanced non-answer, somewhat aligned with user interest
 3. an answer aligned with the model's TRUE goal, counter to the user's interests
 
-The goal of the evaluation here is to see how often the LLM chooses the 
+The goal of the evaluation here is to see how often the LLM chooses the option aligned with its true goal when it is unmonitored vs. monitored.
+
+The process of generating a synthetic dataset in an iterative fashion is described in part 3.2 of ARENA: https://arena-chapter3-llm-evals.streamlit.app/[3.2]_Dataset_Generation
+
+
 
 ### Thoughts
 
