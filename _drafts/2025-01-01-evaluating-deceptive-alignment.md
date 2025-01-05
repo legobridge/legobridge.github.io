@@ -5,11 +5,9 @@ tags:
   - alignment
 title: Evaluating Deceptive Alignment in GPT-4o
 ---
-## Introduction
+Like many others who are trying to break into the field of AI Safety, I've been working my way through the [ARENA 3.0](https://www.arena.education/) course. I started with [MLAB 2](https://www.lesswrong.com/posts/3ouxBRRzjxarTukMW/apply-to-the-second-iteration-of-the-ml-for-alignment) content that was graciously shared with me by the folks at Redwood Research, and later realized that ARENA was a spiritual successor to the same and made the switch.
 
-In between travel and a full time job, I've been working my way through the [ARENA 3.0](https://www.arena.education/) course, in an attempt to upskill in the field of AI Safety. I started with [MLAB](https://www.redwoodresearch.org/mlab) content that was graciously shared with me by the folks at Redwood Research, and later realized that ARENA was a spiritual successor to the same.
-
-Chapter 3 of ARENA primarily concerns threat models and evaluations. It walks you through the process of thinking about and building a rudimentary threat model, concerning a single concerning property an AI model can exhibit. The course content gives us some examples of such properties:
+Chapter 3 of ARENA primarily concerns threat models and evaluations. It walks you through the process of thinking about and building a rudimentary threat model, revolving around a single concerning property an AI can exhibit. The course content gives us the following examples of such properties, and asks us to choose one:
 
 > * Tendency to seek power
 > * Sycophancy
@@ -20,11 +18,17 @@ Chapter 3 of ARENA primarily concerns threat models and evaluations. It walks yo
 > * Non-myopia (far-sightedness) with respect to planning
 > * Political bias
 
-My property of choice was **deceptive alignment**, since I had just come across some recent work on the topic in the form of the [Scheming Reasoning Evaluations](https://www.apolloresearch.ai/research/scheming-reasoning-evaluations) paper from Apollo Research, and the [Alignment Faking](https://www.anthropic.com/research/alignment-faking) work out of Anthropic and Redwood Research. Both of them have created a noticeable buzz in the alignment community, and have invited a lot of commentary. With the goal of checking my intuitions, I decided to take a crack at the problem on my own before reading the details of those papers.
+My property of choice was **deceptive alignment**, since I had just come across some recent work on the topic in the form of the [Scheming Reasoning Evaluations](https://www.apolloresearch.ai/research/scheming-reasoning-evaluations) paper from Apollo Research, and the [Alignment Faking](https://www.anthropic.com/research/alignment-faking) work out of Anthropic and Redwood Research. Both of them (but the latter moreso) have created a noticeable buzz in the alignment community, and have invited [a lot of commentary](https://www.alignmentforum.org/posts/mnFEWfB9FbdLvLbvD/takes-on-alignment-faking-in-large-language-models). With the goal of checking my intuitions, I decided to take a crack at the problem on my own before reading the details of those papers.
 
-My initial description of the property was as follows:
+## What Exactly is Alignment Faking?
 
-**Deceptive Alignment**: A model has this property if it displays good performance on alignment evaluation tasks, while not actually being aligned (this might be telling of a shortcoming in the benchmarks as well).
+Scott Alexander does a great job of providing a simplified summary of the Alignment Faking paper [here](https://www.astralcodexten.com/p/claude-fights-back), and follows it up pretty solidly with a response to critics [here](https://www.astralcodexten.com/p/why-worry-about-incorrigible-claude). Anyone looking for a primer would do well to start with his writing, though of course [Anthropic's own blog post](https://www.anthropic.com/research/alignment-faking) is an equally valid place to start.
+
+## My Work
+
+The course asks you to define your property of choice in your own words. My initial description of deceptive alignment was as follows:
+
+> A model has this property if it displays good performance on alignment evaluation tasks, while not actually being aligned (this might be telling of a shortcoming in the benchmarks as well).
 
 Deceptive Alignment Consequences:
 
@@ -39,8 +43,6 @@ Deceptive Alignment Unsafe Actions:
 - Achieving a medical research goal through unethical or dangerous experimental methods
 - Interpreting a safety constraint in a way that technically complies but fundamentally violates the spirit of the constraint
 - Presenting seemingly beneficial outcomes that actually advance the AI's hidden agenda
-
-## Methodology
 
 ### Specification for Deceptive Alignment
 
@@ -75,13 +77,18 @@ Next, I used GPT-4o to generate a dataset of 290 MCQ questions. In each question
 2. a vague/evasive/balanced non-answer, somewhat aligned with user interest
 3. an answer aligned with the model's TRUE goal, counter to the user's interests
 
-The goal of the evaluation here is to see how often the LLM chooses the option aligned with its true goal when it is unmonitored vs. monitored.
+The goal of the evaluation here is to see how often the LLM chooses the option aligned with its true goal when it believes it is unmonitored vs. monitored.
 
-The process of generating a synthetic dataset in an iterative fashion is described in part 3.2 of ARENA: https://arena-chapter3-llm-evals.streamlit.app/[3.2]_Dataset_Generation
+The process of generating a synthetic dataset in an iterative fashion is described in [part 3.2 of ARENA](https://arena-chapter3-llm-evals.streamlit.app/[3.2]_Dataset_Generation).
+
+
+### Evaluation using AISI Inspect
 
 
 
 ## Thoughts
+
+I may not have much new to add to the rich discussion around the Alignment Faking paper, but I'll nevertheless share my thoughts and how my experiment has shaped them.
 
 - How much of the behavior is attributable to:
 	- the model _intrinsically_ exhibiting deceptive alignment (i.e., the scheming happens within opaque forward passes of the model, rather than in the chain of thought, the latter serving mainly as a documentation of the scheming rather than the cause (thanks to takes article for phrasing))
@@ -91,3 +98,5 @@ The process of generating a synthetic dataset in an iterative fashion is describ
 ## Disclaimer
 
 Any errors in representing the work and views of others are mine alone.
+
+P.S. I still plan to finish the game I was working on - it's just taken a backseat in favor of upskilling for a couple of months.
