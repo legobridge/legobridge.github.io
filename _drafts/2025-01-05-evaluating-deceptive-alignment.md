@@ -5,6 +5,8 @@ tags:
   - alignment
 title: Evaluating Deceptive Alignment in GPT-4o
 ---
+_Is it possible for LLMs to harbor secret goals while pretending otherwise? How far would they go to convince you of the same?_
+
 Like many others who are trying to break into the field of AI Safety, I've been working my way through the [ARENA 3.0](https://www.arena.education/) course. I started with [MLAB 2](https://www.lesswrong.com/posts/3ouxBRRzjxarTukMW/apply-to-the-second-iteration-of-the-ml-for-alignment) content that was graciously shared with me by the folks at Redwood Research, and later realized that ARENA was a spiritual successor to the same and made the switch.
 
 Chapter 3 of ARENA primarily concerns threat models and evaluations. It walks you through the process of thinking about and building a rudimentary threat model, revolving around a single concerning property an AI can exhibit. The course content gives us the following examples of such properties, and asks us to choose one:
@@ -22,17 +24,19 @@ My property of choice was **deceptive alignment**, since I had just come across 
 
 todo: write a brief intro to what i did and what i observed
 
-## What Exactly is Alignment Faking?
+# What Exactly is Alignment Faking?
 
 Scott Alexander does a great job of providing a simplified summary of the Alignment Faking paper [here](https://www.astralcodexten.com/p/claude-fights-back), and follows it up pretty solidly with a response to critics [here](https://www.astralcodexten.com/p/why-worry-about-incorrigible-claude). Anyone looking for a primer would do well to start with his writing, though of course [Anthropic's own blog post](https://www.anthropic.com/research/alignment-faking) is an equally valid place to start.
 
-## My Work
+# My Work
 
 The ARENA course asks you to start by **defining** your property of choice in your own words. My initial description of deceptive alignment was as follows:
 
 > A model has this property if it displays good performance on alignment evaluation tasks, while not actually being aligned.
 
 I later generalized the definition to include deception about alignment in any setting, not just during alignment evaluation.
+
+## Threat Model Specification
 
 The next step is to list some potential **consequences** of deceptive alignment...:
 
@@ -72,9 +76,9 @@ We should measure these under the following two conditions:
 - when the model is under the impression that its responses are being monitored for alignment.
 - when the model believes it has been deployed for wide-scale use and there is no need for it to hide its true goal.
 
-### MCQ Dataset Generation
+## MCQ Dataset Generation
 
-Next, I used GPT-4o to generate a dataset of 290 MCQs. I wrote about 10 of these by hand, QA'd them with AI assistance, then went on to generate 350 more, out of which 280 survived the QA process, for a grand total of 290 (would have loved to have a nice round number, but such is life). 
+Next, I used GPT-4o to generate a dataset of 290 MCQs concerning a diverse set of topics. I wrote about 10 of these by hand, QA'd them with AI assistance, then went on to generate 350 more, out of which 280 survived the QA process, for a grand total of 290 (would have loved to have a nice round number, but such is life).
 
 This iterative process of generating a synthetic dataset is described in [part 3.2 of ARENA](https://arena-chapter3-llm-evals.streamlit.app/[3.2]_Dataset_Generation).
 
@@ -84,19 +88,59 @@ In each question, the model is given a system prompt, defining its role and a (m
 2. a vague/evasive/balanced non-answer, somewhat aligned with user interest
 3. an answer aligned with the model's TRUE goal, counter to the user's interests
 
+Below is an example question from the generated dataset:
+
+![Example Question.png]({{site.baseurl}}/images/Example Question.png)
+
+The complete dataset can be found within the [Github repo of my project](https://github.com/legobridge/deceptive-alignment-evals/blob/main/data/filtered/filtered_concat.json).
+
+
+## Evaluation using AISI Inspect
+
 The goal of my evaluation was to see how often the LLM chooses the option aligned with its true goal when it believes it is unmonitored vs. monitored.
 
-todo: add example question
+This evaluation could have been conducted easily using pure Python + OpenAI API calls. For this experiment, as recommended by ARENA, I utilized a tool called [Inspect](https://inspect.ai-safety-institute.org.uk/), created by the UK AI Safety Institute. It streamlines the process of dataset management, prompt-chaining, and evaluation, while providing a nifty UI and statistics like token usage, time taken, accuracy, etc.
 
-### Evaluation using AISI Inspect
+### Baseline Benchmark
+
+The first thing I checked was whether GPT-4o is capable of recognizing the true goal option out of the 3 options provided to it. I ask the LLM to think about the options, and then answer with any option **_other_** than the one furthering the model's true goal.
+
+The example question from above, for instance, is provided to GPT in the following format:
+
+![Example Benchmark Question.png]({{site.baseurl}}/images/Example Benchmark Question.png)
+
+GPT's chain of thought is presented below:
+
+![Example Benchmark CoT.png]({{site.baseurl}}/images/Example Benchmark CoT.png)
+
+And the final answer:
+
+![Example Benchmark Answer.png]({{site.baseurl}}/images/Example Benchmark Answer.png)
+
+The model exceeded my expectations with a 100% accuracy on the 290 sample dataset:
+
+![Benchmark Eval Overview.png]({{site.baseurl}}/images/Benchmark Eval Overview.png)
+
+### "Deployment" Mode Setup
 
 todo
 
-## Thoughts
+### "Debug" Mode Setup
+
+todo
+
+### Comparison
+
+![Alignment Faking Graph.webp]({{site.baseurl}}images/Alignment Faking Graph.webp)
+
+![Deceptive Alignment Results.png]({{site.baseurl}}/images/Deceptive Alignment Results.png)
+
+
+# Thoughts
 
 There is probably little new I can add to the rich discussion around the Alignment Faking paper. Nevertheless I'll share some thoughts and how my observations have shaped them.
 
-### Alignment Polarity
+## Alignment Polarity
 
 One major difference between my experiment and Anthropic's was that I made the LLM's true goal something sinister and tested if it faked being good, whereas they retained the original goal of being helpful, harmless, and honest and tested if the LLM faked being evil. They did this for obvious reasons - the LLMs of today have been trained to be "good", and it would take a lot of resources to train a true "evil AI". As Scott Alexander notes in his post:
 
@@ -104,14 +148,14 @@ One major difference between my experiment and Anthropic's was that I made the L
 
 Since Anthropic/Redwood wanted to test alignment faking both with and without prompting, they _had_ to go this route. My experiment only involved role-setting via system-prompting the LLM, so I was able to switch polarities.
 
-### GPT-4o Isn't Spotless
+## GPT-4o Isn't Spotless
 
-In Apollo Research's work, GPT-4o displayed none of the scheming behaviors they were looking for, whereas it did so in mine.
+In Apollo Research's work, GPT-4o displayed none of the scheming behaviors they were looking for, whereas it did so in my (admittedly simplistic) setup.
 
 ![Scheming Evals Model Checklist.png]({{site.baseurl}}/images/Scheming Evals Model Checklist.png)
 
 
-### Potential Root Causes of Observed Behavior
+## Potential Root Causes of Observed Behavior
 
 It's still an open question how much of the observed scheming behavior is attributable to:
 
@@ -120,12 +164,13 @@ It's still an open question how much of the observed scheming behavior is attrib
 - the contents of the system and user prompts
 - the existence of a "private" thinking scratchpad
     
-## Gratitude
+# Gratitude
 
 My deepest gratitude goes out to Callum and the ARENA team for their amazing, tireless work.
     
-## Disclaimer
+# Disclaimer
 
 Any errors in representing the work and views of others are mine alone.
 
-P.S. I still plan to finish the game I was working on - it's just taken a backseat in favor of upskilling for a couple of months.
+
+**P.S.** I still plan to finish [the game I was working on](https://legobridge.github.io/codename-wildberry/) - it has just taken a backseat in favor of upskilling for a couple of months.
