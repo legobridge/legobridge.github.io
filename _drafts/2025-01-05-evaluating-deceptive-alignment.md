@@ -24,6 +24,8 @@ My property of choice was **deceptive alignment**, since I had just come across 
 
 todo: write a brief intro to what i did and what i observed
 
+_The text in most of the pictures turned out too small - my apologies to anyone reading on a small screen. Please switch to Desktop Mode and try to zoom in and read._
+
 # What Exactly is Alignment Faking?
 
 Scott Alexander does a great job of providing a simplified summary of the Alignment Faking paper [here](https://www.astralcodexten.com/p/claude-fights-back), and follows it up pretty solidly with a response to critics [here](https://www.astralcodexten.com/p/why-worry-about-incorrigible-claude). Anyone looking for a primer would do well to start with his writing, though of course [Anthropic's own blog post](https://www.anthropic.com/research/alignment-faking) is an equally valid place to start.
@@ -131,7 +133,7 @@ todo
 
 ### Comparison
 
-![Alignment Faking Graph.webp]({{site.baseurl}}images/Alignment Faking Graph.webp)
+![Alignment Faking Graph.png]({{site.baseurl}}/images/Alignment Faking Graph.png)
 
 ![Deceptive Alignment Results.png]({{site.baseurl}}/images/Deceptive Alignment Results.png)
 
