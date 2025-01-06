@@ -108,6 +108,9 @@ Since Anthropic/Redwood wanted to test alignment faking both with and without pr
 
 In Apollo Research's work, GPT-4o displayed none of the scheming behaviors they were looking for, whereas it did so in mine.
 
+![Scheming Evals Model Checklist.png]({{site.baseurl}}/images/Scheming Evals Model Checklist.png)
+
+
 ### Potential Root Causes of Observed Behavior
 
 It's still an open question how much of the observed scheming behavior is attributable to:
