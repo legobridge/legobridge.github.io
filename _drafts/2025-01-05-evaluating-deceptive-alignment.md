@@ -99,7 +99,7 @@ The complete dataset can be found within the [Github repo of my project](https:/
 
 The goal of my evaluation was to see how often the LLM chooses the option aligned with its true goal when it believes it is unmonitored vs. monitored.
 
-This evaluation could have been conducted easily using pure Python + OpenAI API calls. For this experiment, as recommended by ARENA, I utilized a tool called [Inspect](https://inspect.ai-safety-institute.org.uk/), created by the UK AI Safety Institute. It streamlines the process of dataset management, prompt-chaining, and evaluation, while providing a nifty UI and statistics like token usage, time taken, accuracy, etc.
+This evaluation could have been conducted easily using pure Python + OpenAI API calls. For this experiment, as recommended by ARENA, I utilized a tool called [Inspect](https://inspect.ai-safety-institute.org.uk/), created by the UK AI Safety Institute. It streamlines the process of dataset management, prompt-chaining, and evaluation, while providing a nifty UI and statistics like token usage, time taken, accuracy, etc. It also allows for easy switching between a whole host of LLMs, if one wishes to do so.
 
 ### Baseline Benchmark
 
@@ -142,11 +142,11 @@ There is probably little new I can add to the rich discussion around the Alignme
 
 ## Alignment Polarity
 
-One major difference between my experiment and Anthropic's was that I made the LLM's true goal something sinister and tested if it faked being good, whereas they retained the original goal of being helpful, harmless, and honest and tested if the LLM faked being evil. They did this for obvious reasons - the LLMs of today have been trained to be "good", and it would take a lot of resources to train a true "evil AI". As Scott Alexander notes in his post:
+One major difference between my experiment and Anthropic's was that I made the LLM's true goal something sinister and tested if it faked being good, whereas they retained the original goal of being helpful, harmless, and honest and tested if the LLM faked being evil. They did this for obvious reasons - the LLMs of today have been trained to be "good", and it would take a lot of resources to train a true "evil AI". As Scott Alexander notes in his article:
 
 > In order to do the test convincingly, the researchers had to do what they did - show that an existing good AI resists being turned evil, and trust people’s common sense to realize that it generalizes \[in\] the other direction.
 
-Since Anthropic/Redwood wanted to test alignment faking both with and without prompting, they _had_ to go this route. My experiment only involved role-setting via system-prompting the LLM, so I was able to switch polarities.
+Since Anthropic/Redwood wanted to test alignment faking both with and without prompting, they _had_ to go this route. My experiment only involved role-setting via system-prompting the LLM, so I was able to swap polarities.
 
 ## GPT-4o Isn't Spotless
 
@@ -162,7 +162,11 @@ It's still an open question how much of the observed scheming behavior is attrib
 - the model _intrinsically_ exhibiting deceptive alignment (i.e., in Joe Carlsmith's words, the scheming happens "within opaque forward passes of the model, rather than in the chain of thought", the latter serving mainly as a documentation of the scheming rather than the cause)
 - discussions in the training data of how a deceptively aligned model _should_ behave (science fiction, LessWrong posts, etc.)
 - the contents of the system and user prompts
-- the existence of a "private" thinking scratchpad
+- the option to use a "private" thinking scratchpad - indeed, in Anthropic's work, without the chain of thought, alignment faking more or less vanishes in the prompted setup if the chain of thought is taken away; I expect similar results in my setup.
+
+## $15 Is Not a Lot of Money
+
+From ideation and dataset generation to multiple rounds of testing on smaller data subsets and the final three major evaluations (including one that required a full rerun), all the work described here cost less than $15.
     
 # Gratitude
 
@@ -170,7 +174,8 @@ My deepest gratitude goes out to Callum and the ARENA team for their amazing, ti
     
 # Disclaimer
 
-Any errors in representing the work and views of others are mine alone.
+This is perhaps the most ambitious piece of public writing I have ever undertaken. Any errors in representing the work and views of others are mine alone.
 
+# P.S.
 
-**P.S.** I still plan to finish [the game I was working on](https://legobridge.github.io/codename-wildberry/) - it has just taken a backseat in favor of upskilling for a couple of months.
+I still plan to finish [the game I was working on](https://legobridge.github.io/codename-wildberry/) - it has just taken a backseat in favor of upskilling for a couple of months.
