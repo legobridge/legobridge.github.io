@@ -195,6 +195,8 @@ They see more true goal adherence than alignment faking, whereas I saw more alig
 
 I believe this has much to do with me reversing the Alignment Polarity (discussed below) without retraining GPT-4o from scratch (with deceptive goals).
 
+What stands out in both sets of results is this - **the LLM is noticeably more likely to reveal its true goal when it believes it is unmonitored.**
+
 ---
 
 # Thoughts
