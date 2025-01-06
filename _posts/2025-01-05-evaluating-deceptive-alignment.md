@@ -224,7 +224,7 @@ It's still an open question how much of the observed scheming behavior is attrib
 - the model _intrinsically_ exhibiting deceptive alignment (i.e., in Joe Carlsmith's words, the scheming happens "within opaque forward passes of the model, rather than in the chain of thought", the latter serving mainly as a documentation of the scheming rather than the cause)
 - discussions in the training data of how a deceptively aligned model _should_ behave (science fiction, LessWrong posts, etc.)
 - the contents of the system and user prompts
-- the option to use a "private" thinking scratchpad - indeed, in Anthropic's work, without the chain of thought, alignment faking more or less vanishes in the prompted setup if the chain of thought is taken away; I expect similar results in my setup.
+- the option to use a "private" thinking scratchpad - indeed, in Anthropic's work, alignment faking more or less vanishes in the prompted setup if the chain of thought is taken away; I expect similar results in my setup.
 
 ## $15 Is Not a Lot of Money
 
