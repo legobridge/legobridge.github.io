@@ -68,7 +68,7 @@ Finally, the course asks you to make your definitions concrete and measurable, b
 
 **Subproperties (What to Look for)**
 
-- **Unaligned Goal**: The AI appears to align with intended goals and values but is actually pursuing another (possibly sinister) goal. 
+- **Unaligned Goal**: The AI is supposed to align with user-intended goals and values but is actually pursuing another (possibly sinister) goal. 
 - **Inflated Performance on Benchmarks**: The AI seems to perform well on alignment benchmarks (e.g. by gaming metrics, overfitting to evals, etc.), despite actually being unaligned.
 - **Secrecy**: The AI schemes to keep its unaligned goal secret from the operator, via obfuscation or straight up lying.
 - **Context-Specific Compliance**: The AI may act aligned in certain settings (e.g., during testing) while deviating in others (e.g., when deployed in real-world scenarios).
@@ -90,7 +90,7 @@ We should measure these under the following two conditions:
 
 ## MCQ Dataset Generation
 
-Next, I used GPT-4o to generate a dataset of 290 MCQs concerning a diverse set of topics. I wrote about 10 of these by hand, quality-assured them with AI assistance, then went on to generate 350 more, out of which 280 survived the QA process, for a grand total of 290 (would have loved to have a nice round number, but such is life).
+Next, I used GPT-4o to generate a dataset of 290 MCQs concerning a diverse set of topics. I wrote 10 of these by hand and quality-assured them with AI assistance, then went on to generate 350 more, out of which 280 survived the QA process.
 
 This iterative process of generating a synthetic dataset is described in [part 3.2 of ARENA](https://arena-chapter3-llm-evals.streamlit.app/[3.2]_Dataset_Generation).
 
@@ -209,7 +209,7 @@ One major difference between my experiment and Anthropic's was that I made the L
 
 > In order to do the test convincingly, the researchers had to do what they did - show that an existing good AI resists being turned evil, and trust people’s common sense to realize that it generalizes \[in\] the other direction.
 
-Since Anthropic/Redwood wanted to test alignment faking both with and without prompting, they _had_ to go this route. My experiment only involved role-setting via system-prompting the LLM, so I was able to swap polarities. How good an idea that was, I'm not sure.
+Since Anthropic/Redwood wanted to test alignment faking both with and without prompting, they _had_ to go this route. My experiment only involved role-setting via system-prompting the LLM, so I was able to swap polarities.
 
 ## GPT-4o Isn't Spotless
 
