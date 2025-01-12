@@ -12,7 +12,10 @@ description: r/therewasanattempt to divine meaning where none existed.
 avatar: https://raw.githubusercontent.com/legobridge/legobridge.github.io/master/images/lego.png
 
 # To make developing easier
-show_drafts: true
+show_drafts: false
+
+# Google Analytics
+google_analytics: G-QL8KY2Y3YB
 
 # Prose configuration
 prose:
