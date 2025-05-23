@@ -5,9 +5,9 @@ permalink: /about/
 published: true
 ---
 
-I'm an Applied Scientist at [Relativity](https://www.relativity.com/), researching and experimenting with the capabilities and limits of large language models like GPT-4, and integrating them into a mature product and codebase. My work also involves statistical analysis and information retrieval.
+I'm a Senior Applied Scientist at [Relativity](https://www.relativity.com/), researching and experimenting with the capabilities and limits of large language models like GPT-4.1, and integrating their capabilities into legal data intelligence software. My work also utilizes statistical analysis and information retrieval.
 
-I graduated from [Northwestern University](https://en.wikipedia.org/wiki/Northwestern_University) in late 2023 with an MS in Artificial Intelligence. 
+I graduated from [Northwestern University](https://en.wikipedia.org/wiki/Northwestern_University) in late 2023 with an MS in Artificial Intelligence.
 
 I've previously worked as a data scientist and as a software development engineer at [Flipkart](https://en.wikipedia.org/wiki/Flipkart). My areas of focus there were NLP, information retrieval (search), shipment logistics automation, and web-scale Java microservices. 
 
